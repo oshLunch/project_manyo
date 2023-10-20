@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마녀공장</title>
+    <link rel="stylesheet" href="css/index.css">
+
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script>
+        $(function () {
+            let open = $('header .inner .menu_open');
+            let close = $('header .inner .menu_close');
+            let depth01 = $('header .inner .mobile .gnb .depth01');
+            let depth02 = $('header .inner .mobile .gnb .depth01 .depth02');
+
+            let pcA = $('header .inner .pc .gnb .depth01 > a');
+            let pcLi = $('header .inner .pc .gnb .depth01');
+
+            let a = $('header .inner .mobile .gnb .depth01 > a');
+            let li = $('header .inner .mobile .gnb .depth01');
+
+            let bestMenu = $('.cont01 .inner .best_menu li');
+
+            // 창 크기에 따라 모바일 메뉴 숨기기
+            $(window).resize(function () {
+                if ($(window).width() > 1024) {
+                    open.css,
+                        depth01.css({
+                            'display': 'none'
+                        })
+                    close.css({
+                        'display': 'none'
+                    })
+                } else {
+                    open.css({
+                        'display': 'block'
+                    })
+                }
+            })
+
+            // 메뉴열기 버튼 클릭시
+            open.click(function () {
+                open.css({
+                    'display': 'none'
+                })
+                close.css({
+                    'display': 'block'
+                })
+                depth01.slideDown();
+            })
+
+            // 메뉴닫기 버튼 클릭시
+            close.click(function () {
+                open.css({
+                    'display': 'block'
+                })
+                close.css({
+                    'display': 'none'
+                })
+                depth01.slideUp();
+            })
+
+            // 모바일 2차 아코디언 메뉴
+            a.click(function () {
+                if ($(this).next().css('display') == 'none') {
+                    depth02.slideUp();
+                    $(this).next().slideDown();
+                    a.css({
+                        'color': '#333'
+                    })
+                    $(this).css({
+                        'color': "#bb181d"
+                    })
+
+                } else if ($(this).parent().hasClass('event') == true) {
+                    depth02.slideUp();
+                    a.css({
+                        'color': '#333'
+                    })
+
+                    $(this).css({
+                        'color': "#bb181d"
+                    })
+
+                } else {
+                    $(this).next().slideUp();
+                    $(this).css({
+                        'color': "#333"
+                    })
+                }
+            })
+
+            pcA.mouseenter(function(){
+                pcLi.removeClass('on');
+                $(this).parent().addClass('on');
+            })
+
+            // cont01 네비게이션 글자 색상 변경
+            bestMenu.mouseenter(function () {
+                bestMenu.removeClass('on');
+                $(this).addClass('on');
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+        <header>
+            <div class="inner">
+                <h1>
+                    <a href="#">
+                        <img src="img/마녀공장/마녀공장로고.svg" alt="로고">
+                    </a>
+                </h1>
+
+                <nav class="pc">
+                    <ul class="gnb">
+                        <li class="depth01">
+                            <a href="#">전체</a>
+                            <ul class="depth02">
+                                <li><a href="#">클렌징</a></li>
+                                <li><a href="#">스킨 / 토너 / 미스트</a></li>
+                                <li><a href="#">앰플 / 에센스</a></li>
+                                <li><a href="#">로션 / 크림 / 아이크림</a></li>
+                                <li><a href="#">선케어</a></li>
+                                <li><a href="#">마스크 / 팩</a></li>
+                                <li><a href="#">헤어 / 바디</a></li>
+                                <li><a href="#">립 / 핸드</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01 event">
+                            <a href="#">이벤트</a>
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">베스트</a>
+                            <ul class="depth02">
+                                <li><a href="#">피부타입별</a></li>
+                                <li><a href="#">카테고리별</a></li>
+                                <li><a href="#">라인별</a></li>
+                                <li><a href="#">브랜드별</a></li>
+                                <li><a href="#">신상품</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">특가</a>
+                            <ul class="depth02">
+                                <li><a href="#">피부타입별</a></li>
+                                <li><a href="#">카테고리별</a></li>
+                                <li><a href="#">라인별</a></li>
+                                <li><a href="#">브랜드별</a></li>
+                                <li><a href="#">신상품</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">브랜드</a>
+                            <ul class="depth02">
+                                <li><a href="#">브랜드 스토리</a></li>
+                                <li><a href="#">성분철학</a></li>
+                                <li><a href="#">사회공헌</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+                    </ul> <!-- gnb end -->
+                </nav> <!-- pc end -->
+
+                <div class="button">
+                    <div class="menu_open">
+                        <a href="#">
+                            <img src="img/마녀공장/menu.png" alt="열기">
+                        </a>
+                    </div> <!-- menu_open end -->
+
+                    <div class="menu_close">
+                        <a href="#">
+                            <img src="img/마녀공장/close.png" alt="닫기">
+                        </a>
+                    </div> <!-- menu_close end -->
+                </div> <!-- button end -->
+
+                <nav class="mobile">
+                    <ul class="gnb">
+                        <li class="depth01 on">
+                            <a href="#">전체</a>
+                            <ul class="depth02">
+                                <li><a href="#">클렌징</a></li>
+                                <li><a href="#">스킨 / 토너 / 미스트</a></li>
+                                <li><a href="#">앰플 / 에센스</a></li>
+                                <li><a href="#">로션 / 크림 / 아이크림</a></li>
+                                <li><a href="#">선케어</a></li>
+                                <li><a href="#">마스크 / 팩</a></li>
+                                <li><a href="#">헤어 / 바디</a></li>
+                                <li><a href="#">립 / 핸드</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01 event">
+                            <a href="#">이벤트</a>
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">베스트</a>
+                            <ul class="depth02">
+                                <li><a href="#">피부타입별</a></li>
+                                <li><a href="#">카테고리별</a></li>
+                                <li><a href="#">라인별</a></li>
+                                <li><a href="#">브랜드별</a></li>
+                                <li><a href="#">신상품</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">특가</a>
+                            <ul class="depth02">
+                                <li><a href="#">피부타입별</a></li>
+                                <li><a href="#">카테고리별</a></li>
+                                <li><a href="#">라인별</a></li>
+                                <li><a href="#">브랜드별</a></li>
+                                <li><a href="#">신상품</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+
+                        <li class="depth01">
+                            <a href="#">브랜드</a>
+                            <ul class="depth02">
+                                <li><a href="#">브랜드 스토리</a></li>
+                                <li><a href="#">성분철학</a></li>
+                                <li><a href="#">사회공헌</a></li>
+                            </ul> <!-- depth02 end -->
+                        </li> <!-- depth01 end -->
+                    </ul> <!-- gnb end -->
+                </nav> <!-- mobile end -->
+            </div> <!-- inner end -->
+        </header>
+
+        <main>
+            <section class="main_visual">
+                <div class="inner">
+                    <div class="title">
+                        <h2>히더 진정 라인 런칭 기념<br />
+                            Special Week</h2>
+                        <p>딱 일주일만, 최대 70% 할인 쿠폰 증정</p>
+                        <span>2023.04.07 am 10:00 - 04.14 am 10:00</span>
+                        <a href="#">자세히보기</a>
+                    </div> <!-- title end -->
+                </div> <!-- inner end -->
+            </section> <!-- main_visual end -->
+
+            <section class="cont01">
+                <div class="inner">
+                    <div class="title">
+                        <a href="#">전체보기</a>
+                        <h2>best sellers :</h2>
+                    </div> <!-- title end -->
+
+                    <ul class="best_menu">
+                        <li class="on"><a href="#">전체</a></li>
+                        <li><a href="#">클렌징</a></li>
+                        <li><a href="#">스킨 / 토너 / 미스트</a></li>
+                        <li><a href="#">앰플 / 에센스 / 오일</a></li>
+                        <li><a href="#">로션 / 크림 / 아이크림</a></li>
+                        <li><a href="#">마스크 / 팩</a></li>
+                        <li><a href="#">헤어 / 바디</a></li>
+                    </ul> <!-- best_menu end -->
+
+                    <div class="list">
+                        <div class="item">
+                            <a href="#">
+                                <figure>
+                                    <img src="img/마녀공장/1512_main_028.png" alt="오일">
+                                </figure>
+
+                                <div class="item_text">
+                                    <h4>[대용량] 퓨어 클렌징 오일 400ml</h4>
+
+                                    <div class="pay">
+                                        <p>49,000원</p>
+                                        <strong>21,990원 <span> 55%</span></strong>
+                                    </div> <!-- pay end -->
+                                </div> <!-- item_text end -->
+                            </a>
+                        </div> <!-- item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <figure>
+                                    <img src="img/마녀공장/1650_main_019.jpg" alt="에센스">
+                                </figure>
+
+                                <div class="item_text">
+                                    <h4>갈락토미 나이아신 에센스 50ml+12ml</h4>
+
+                                    <div class="pay">
+                                        <p>29,000원</p>
+                                        <strong>17,400원 <span>40%</span></strong>
+                                    </div> <!-- pay end -->
+                                </div> <!-- item_text end -->
+                            </a>
+                        </div> <!-- item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <figure>
+                                    <img src="img/마녀공장/830_main_054.png" alt="폼">
+                                </figure>
+
+                                <div class="item_text">
+                                    <h4>[기획세트] 퓨어&딥 클렌징 폼 100mlX3</h4>
+
+                                    <div class="pay">
+                                        <p>42,000원</p>
+                                        <strong>17,090원 <span>59%</span></strong>
+                                    </div> <!-- pay end -->
+                                </div> <!-- item_text end -->
+                            </a>
+                        </div> <!-- item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <figure>
+                                    <img src="img/마녀공장/1709_main_058.jpg" alt="앰플">
+                                </figure>
+
+                                <div class="item_text">
+                                    <h4>비피다 바이옴 콤플렉스 앰플 50ml</h4>
+
+                                    <div class="pay">
+                                        <p>35,000원</p>
+                                        <strong>21,000원 <span>40%</span></strong>
+                                    </div> <!-- pay end -->
+                                </div> <!-- item_text end -->
+                            </a>
+                        </div> <!-- item end -->
+                    </div> <!-- list end -->
+                </div><!-- inner end -->
+            </section> <!-- cont01 end -->
+
+            <section class="cont02">
+                <div class="inner">
+                    <div class="title">
+                        <div>
+                            <h2>brand :</h2>
+                            <p>마녀공장을 만나는 순간<br />
+                                시작되는 새로운 당신.</p>
+                        </div>
+
+                        <a href="#">전체보기</a>
+                    </div> <!-- title end -->
+
+                    <div class="list">
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/마녀공장/brand01.jpg" alt="스토리">
+                                <div class="text">
+                                    <strong>about ma:nyo</strong>
+                                    <p>브랜드 스토리</p>
+                                </div> <!-- text end -->
+                            </a>
+                        </div> <!-- item end -->
+
+                        <div class="item">
+                            <a href="#">
+                                <img src="img/마녀공장/brand02.jpg" alt="성분철학">
+                                <div class="text">
+                                    <strong>of ma:nyo</strong>
+                                    <p>성분 철학</p>
+                                </div> <!-- text end -->
+                            </a>
+                        </div> <!-- item end -->
+                    </div> <!-- list end -->
+                </div> <!-- inner end -->
+            </section> <!-- cont02 end -->
+        </main>
+
+        <footer>
+            <p>COPYRIGHT © MANYOFACTORY ALL RIGHTS RESERVED.</p>
+        </footer>
+    </div> <!-- #wrap end -->
+</body>
+
+</html>
